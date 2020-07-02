@@ -1,26 +1,31 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Define Post schema
 const Post = new Schema({
 	title: {
 		type: String,
-		required: true,
+		required: [true, 'Title is required'],
+		minlength: 1,
 	},
 	create_date: {
 		type: Date,
-		required: true,
+		required: [true, 'Create date is required'],
 	},
 	modified_date: {
 		type: Date,
-		required: true,
+		required: [true, 'Modified date is required'],
 	},
 	username: {
 		type: String,
-		required: true,
+		required: [true, 'Username is required'],
+		minlength: 1,
 	},
 	content: {
 		type: String,
-		required: true,
+		required: [true, 'Content is required'],
+		minlength: [2, 'Content must contain at least two characters'],
+		maxlength: [10240, 'Exceeded maximum content length of 10240 characters'],
 	},
 	category: String,
 });
